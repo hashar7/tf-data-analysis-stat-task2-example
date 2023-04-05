@@ -8,13 +8,5 @@ from scipy.stats import norm
 chat_id = 458704720 # Ваш chat ID, не меняйте название переменной
 
 def solution(p: float, x: np.array) -> tuple:
-    n = len(x)
-    s = np.sum(x)
-    t = 56
-    a_hat = 2 * s / (t**2 * n)
-    i = n / a_hat**2
-    se_a_hat = np.sqrt(a_hat**2 / (n * i))
-    z_p_2 = norm.ppf(1 - (1 - p) / 2)
-    left = a_hat - z_p_2 * se_a_hat
-    right = a_hat + z_p_2 * se_a_hat
-    return left, right
+    return 2 * (-min(-x) - 1 / 2) / 56 ** 2, \
+           2 * (-np.log(1 - p) / len(x) - min(-x) - 1 / 2) / 56 ** 2
